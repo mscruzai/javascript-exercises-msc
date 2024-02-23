@@ -1,9 +1,9 @@
 const removeFromArray = function(array, ...remove) {
     
-    let index = 0;
+    let index = -1;
     for (let i=0 ; i < remove.length; i++){
-        index = array.indexOf(remove[i]);
-        array.splice(index,1);
+        while((index = array.indexOf(remove[i])) > -1)
+            array.splice(index,1);
     }
     return array;
 
