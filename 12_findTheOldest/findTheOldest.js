@@ -1,19 +1,19 @@
-const findTheOldest = function(arrPeople) {
-    return arrPeople.reduce(
+const findTheOldest = (arrPeople) =>
+    arrPeople.reduce(
         (oldest, person ) => {
             
-            let personAge = !person.yearOfDeath
-                  ? (new Date().getFullYear() - person.yearOfBirth)
-                  : (person.yearOfDeath - person.yearOfBirth);
-
-            if( personAge > (oldest.yearOfDeath - oldest.yearOfBirth)){
-                oldest = person;
-            }
+            let personAge = getAge( person.yearOfBirth , person.yearOfDeath );
+            let oldestAge = getAge( oldest.yearOfBirth , oldest.yearOfDeath );
             
-            return oldest;
+            return personAge > oldestAge ? person : oldest;
         }
     );
-};
+
+const getAge = (birth, death) => 
+    !death
+    ? new Date().getFullYear() - birth
+    : death - birth;
+
 
 // Do not edit below this line
 module.exports = findTheOldest;
